@@ -1,4 +1,6 @@
-FROM alpine:3.14
+ARG ALPINE_VERSION=3.14
+
+FROM alpine:${ALPINE_VERSION}
 
 ARG BUILD_DATE
 ARG BUILD_REVISION
@@ -30,4 +32,4 @@ ENV PATH="/opt/exiftool:$PATH"
 
 WORKDIR /src
 
-ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "*"]
+ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "."]
