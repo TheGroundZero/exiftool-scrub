@@ -15,8 +15,9 @@ LABEL org.opencontainers.image.created=$BUILD_DATE
 LABEL org.opencontainers.image.revision=$BUILD_REVISION
 
 RUN apk add --no-cache curl perl
-RUN mkdir -p /opt/exiftool && cd /opt/exiftool \
-  && EXIFTOOL_VERSION=`curl -s https://exiftool.org/ver.txt` \
+RUN mkdir -p /opt/exiftool && cd /opt/exiftool
+WORKDIR /opt/exiftool
+RUN EXIFTOOL_VERSION=`curl -s https://exiftool.org/ver.txt` \
   && EXIFTOOL_ARCHIVE=Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz \
   && curl -s -O https://exiftool.org/$EXIFTOOL_ARCHIVE \
   && CHECKSUM=`curl -s https://exiftool.org/checksums.txt | grep SHA1\(${EXIFTOOL_ARCHIVE} | awk -F'= ' '{print $2}'` \
@@ -29,4 +30,4 @@ ENV PATH="/opt/exiftool:$PATH"
 
 WORKDIR /src
 
-ENTRYPOINT ["/bin/sh", "exiftool", "-overwrite_original", "-recurse", "-all=", "*"]
+ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "*"]
