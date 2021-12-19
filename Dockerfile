@@ -4,6 +4,8 @@ FROM alpine:${ALPINE_VERSION}
 
 ARG BUILD_DATE
 ARG BUILD_REVISION
+ARG SOURCE_DIR="/github/workspace"
+ENV SUB_DIR="/"
 
 LABEL org.opencontainers.image.title=" TheGroundZero/exiftool-scrub"
 LABEL org.opencontainers.image.description="exiftool-scrub: Docker image with exiftool to recursively scrub all exif data"
@@ -30,6 +32,6 @@ RUN EXIFTOOL_VERSION=`curl -s https://exiftool.org/ver.txt` \
 # update PATH to include paths to exiftool
 ENV PATH="/opt/exiftool:$PATH"
 
-WORKDIR /src
+WORKDIR ${SOURCE_DIR}${SUB_DIR}
 
 ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "."]
