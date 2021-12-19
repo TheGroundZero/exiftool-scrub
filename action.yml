@@ -1,0 +1,9 @@
+name: 'Exiftool Scrub'
+description: 'Docker image with exiftool to recursively scrub all exif data'
+author: 'TheGroundZero'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'file-minus'
+  color: 'orange'
