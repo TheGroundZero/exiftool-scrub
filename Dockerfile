@@ -34,4 +34,4 @@ ENV PATH="/opt/exiftool:$PATH"
 
 WORKDIR ${SOURCE_DIR}${SUB_DIR}
 
-ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "."]
+ENTRYPOINT ["exiftool", "-overwrite_original", "-recurse", "-all=", "-TagsFromFile", "@", "-icc_profile", "."]
