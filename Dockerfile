@@ -7,7 +7,7 @@ ARG BUILD_REVISION
 ARG SOURCE_DIR="/github/workspace"
 ENV SUB_DIR="/"
 
-LABEL org.opencontainers.image.title=" TheGroundZero/exiftool-scrub"
+LABEL org.opencontainers.image.title="TheGroundZero/exiftool-scrub"
 LABEL org.opencontainers.image.description="exiftool-scrub: Docker image with exiftool to recursively scrub all exif data"
 LABEL org.opencontainers.image.authors="2406013+TheGroundZero@users.noreply.github.com"
 LABEL org.opencontainers.image.vendor="TheGroundZero"
