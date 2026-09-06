@@ -23,7 +23,7 @@ RUN mkdir -p /opt/exiftool && cd /opt/exiftool
 WORKDIR /opt/exiftool
 RUN EXIFTOOL_VERSION=`curl -s https://exiftool.org/ver.txt` \
   && EXIFTOOL_ARCHIVE=Image-ExifTool-${EXIFTOOL_VERSION}.tar.gz \
-  && curl -s -o ${EXIFTOOL_ARCHIVE} https://sourceforge.net/projects/exiftool/files/${EXIFTOOL_ARCHIVE}/download \
+  && curl -sLo ${EXIFTOOL_ARCHIVE} https://sourceforge.net/projects/exiftool/files/${EXIFTOOL_ARCHIVE}/download \
   && CHECKSUM=`curl -s https://exiftool.org/checksums.txt | grep SHA1\(${EXIFTOOL_ARCHIVE} | awk -F'= ' '{print $2}'` \
   && echo "${CHECKSUM}  ${EXIFTOOL_ARCHIVE}" | /usr/bin/sha1sum -c -s - \
   && tar xzf $EXIFTOOL_ARCHIVE --strip-components=1 \
